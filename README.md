@@ -8,7 +8,7 @@ ai = OpenAI(
 )
 ```
 
-Infrai gives you one key and one bill for every capability, and a plain REST call works from any language with no SDK. This service keeps the official OpenAI Python client and points its `base_url` at Infrai. A single `INFRAI_API_KEY` covers both calls in the workflow: embeddings select an appointment queue, then that typed decision becomes context for a chat completion that drafts an operations notification.
+Infrai gives you one key and one bill for every capability, and you talk to it with a plain REST call from any language, no SDK required. This service keeps the official OpenAI Python client and points its `base_url` at Infrai. A single `INFRAI_API_KEY` covers both calls in the workflow: embeddings select an appointment queue, then that typed decision becomes context for a chat completion that drafts an operations notification.
 
 Coming from Next.js route handlers, I think of `POST /appointments/route` as the Python equivalent: validate at the boundary, keep the decision in a small domain function, and return a predictable response shape.
 

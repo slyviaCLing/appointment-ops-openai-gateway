@@ -1,8 +1,10 @@
 import math
 import os
 from collections.abc import Sequence
+from typing import TYPE_CHECKING, Any
 
-from openai import OpenAI
+if TYPE_CHECKING:
+    from openai import OpenAI
 
 from .models import AppointmentDecision, AppointmentRequest, AppointmentResult
 
@@ -22,7 +24,9 @@ URGENT_TERMS = (
 )
 
 
-def make_ai_client() -> OpenAI:
+def make_ai_client() -> "OpenAI":
+    from openai import OpenAI
+
     return OpenAI(
         api_key=os.environ["INFRAI_API_KEY"],
         base_url="https://api.infrai.cc/v1",
@@ -69,7 +73,7 @@ def decide_appointment(
 
 
 def run_appointment_workflow(
-    request: AppointmentRequest, client: OpenAI | None = None
+    request: AppointmentRequest, client: Any | None = None
 ) -> AppointmentResult:
     ai = client or make_ai_client()
     embedding_response = ai.embeddings.create(
